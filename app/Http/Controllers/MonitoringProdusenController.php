@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BenihData;
 use App\Models\DataEvaluasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MonitoringProdusenController extends Controller
 {
+    public function index()
+    {
+        try {
+            return view('produsen.monitoring.index');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
     public function laporanBulanan()
     {
         try {
             $laporanBulanan = DataEvaluasi::where('id_akunp', Auth::user()->id)->get();
-            return view('produsen.monitoring.index', ['getLaporan' => $laporanBulanan]);
+            return view('produsen.monitoring.laporan-kinerja', ['getLaporan' => $laporanBulanan]);
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
@@ -100,6 +109,16 @@ class MonitoringProdusenController extends Controller
             $laporan = DataEvaluasi::find($id);
             $laporan->delete();
             return redirect('/monitoring/laporan-bulanan')->with('success', 'Berhasil menghapus data evaluasi');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
+
+    public function riwayatPencatatan()
+    {
+        try {
+            $benihData = BenihData::where('id_akunp', Auth::user()->id)->get();
+            return view('produsen.monitoring.pencatatan-benih', ['getRiwayat' => $benihData]);
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
