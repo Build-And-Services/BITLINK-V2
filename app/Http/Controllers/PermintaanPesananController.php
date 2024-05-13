@@ -12,11 +12,12 @@ class PermintaanPesananController extends Controller
     {
         try {
             $pesanan = Pesanan::with('benihData', 'pembeli')->latest()->get();
-            return view('produsen.permintaan-pesanan.index',
-            [
-                'getPermintaanPesanan' => $pesanan
-            ]
-        );
+            return view(
+                'produsen.permintaan-pesanan.index',
+                [
+                    'getPermintaanPesanan' => $pesanan
+                ]
+            );
         } catch (\Throwable $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -28,22 +29,24 @@ class PermintaanPesananController extends Controller
         try {
             $pesanan = Pesanan::with(['pembeli', 'benihData'])->where('id', $id)->first();
             $perusahaan = \DB::table('benih_data')
-            ->where('id_benih', $pesanan->id_benih)
-            ->join('users', 'users.id', '=', 'benih_data.id_akunp')
-            ->join('data_akun_produsen', 'data_akun_produsen.id_user', '=', 'users.id')
-            ->select([
-                'data_akun_produsen.nama_perusahaan', 'data_akun_produsen.nomor_legalitas_usaha', 'data_akun_produsen.alamat_lengkap'
-            ])->first();
+                ->where('id_benih', $pesanan->id_benih)
+                ->join('users', 'users.id', '=', 'benih_data.id_akunp')
+                ->join('data_akun_produsen', 'data_akun_produsen.id_user', '=', 'users.id')
+                ->select([
+                    'data_akun_produsen.nama_perusahaan',
+                    'data_akun_produsen.nomor_legalitas_usaha',
+                    'users.alamat_lengkap'
+                ])->first();
             // dd($perusahaan);
-            // dd($pesanan);
             // $pesanan = Pesanan::findOrFail($id);
-            return view('produsen.permintaan-pesanan.invoice',
-            [
-                'getDetailInvoice' => $pesanan,
-                'getPerusahaan' => $perusahaan
-            ]
+            return view(
+                'produsen.permintaan-pesanan.invoice',
+                [
+                    'getDetailInvoice' => $pesanan,
+                    'getPerusahaan' => $perusahaan
+                ]
 
-        );
+            );
         } catch (\Throwable $e) {
             // dd($e);
             return redirect()->back()->withError($e->getMessage());
@@ -65,7 +68,8 @@ class PermintaanPesananController extends Controller
         }
     }
 
-    public function trackDistribusi($id) {
+    public function trackDistribusi($id)
+    {
         try {
             $pesanan = Pesanan::with('benihData', 'pembeli')->where('id', $id)->first();
             // dd($pesanan->status_pengiriman);
@@ -77,7 +81,8 @@ class PermintaanPesananController extends Controller
         }
     }
 
-    public function updateStatusPengiriman(Request $request, $id) {
+    public function updateStatusPengiriman(Request $request, $id)
+    {
         try {
             $request->validate([
                 'status_pengiriman' => 'required|in:PROSES,SEDANG DIKIRIM,DITERIMA',
