@@ -86,16 +86,13 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-<<<<<<< HEAD
     Route::prefix('manage-users')->group(function () {
         Route::get('/pembeli', [ManageUserController::class, 'pembeli'])->name('pembeli.index');
         Route::get('/produsen', [ManageUserController::class, 'produsen'])->name('produsen.index');
     });
-=======
     Route::get('/profile', function() {
         return view('produsen.profile.index');
     })->name('profile');
->>>>>>> 161c893 (feat: view detail and form edit)
 });
 
 Route::controller(AuthController::class)->group(function () {
