@@ -150,10 +150,15 @@
                                                     <li><a href="{{ route('produsen.index') }}">Produsen</a></li>
                                                 </ul>
                                             </li>
-                                            <li
-                                                class="{{ request()->segment(1) == 'monitoring-dan-edukasi' ? 'active' : '' }}">
-                                                <a href="#">Monitoring dan Edukasi</a>
+                                            @if (Auth::user()->role == 'PRODUSEN')
+                                            <li class="{{ request()->segment(1) == 'monitoring' ? 'active' : '' }}">
+                                                <a href="#">Monitoring <i class="icofont-rounded-down"></i></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{{ url('/monitoring/laporan-bulanan') }}">Laporan Kinerja</a></li>
+                                                    <li><a href="{{ url('/') }}">Edukasi</a></li>
+                                                </ul>
                                             </li>
+                                            @endif
                                             <li class="{{ request()->segment(1) == 'pesanan' ? 'active' : '' }}"><a
                                                     href="{{ route('pesanan.index') }}">Pesanan</a></li>
                                             @if (Auth::user()->role == 'PRODUSEN' || Auth::user()->role == 'AKUN DINAS')
