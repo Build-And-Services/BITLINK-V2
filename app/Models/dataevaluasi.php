@@ -23,6 +23,6 @@ class DataEvaluasi extends Model
 
     public function akunProdusen(): BelongsTo
     {
-        return $this->belongsTo(DataAkunProdusen::class, 'id_user', 'id_akunp');
+        return $this->belongsTo(DataAkunProdusen::class, 'id_akunp', 'id_user');
     }
 }
