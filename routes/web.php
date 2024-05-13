@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BenihDataController;
 use App\Http\Controllers\DataPencatatanController;
 use App\Http\Controllers\ManageUserController;
+use App\Http\Controllers\MonitoringProdusenController;
 use App\Http\Controllers\PermintaanPesananController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProductController;
@@ -93,6 +94,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', function() {
         return view('produsen.profile.index');
     })->name('profile');
+    Route::prefix('monitoring')->group(function () {
+        Route::controller(MonitoringProdusenController::class)->group(function () {
+            Route::get('/laporan-bulanan', 'laporanBulanan');
+            Route::get('/laporan-bulanan/create', 'createLaporan');
+            Route::post('/laporan-bulanan', 'storeLaporan')->name('produsen.laporan.store');
+            Route::get('/laporan-bulanan/{id}', 'showLaporan')->name('produsen.laporan.detail');
+            Route::put('/laporan-bulanan/{id}', 'updateLaporan')->name('produsen.laporan.update');
+            Route::delete('/laporan-bulanan/delete/{id}', 'destroyLaporan')->name('produsen.laporan.destroy');
+        });
+    });
 });
 
 Route::controller(AuthController::class)->group(function () {
