@@ -113,113 +113,113 @@ class DatabaseSeeder extends Seeder
             'id_kemitraan' => $mitra3->id_kemitraan,
         ]);
 
-        $benih1 = BenihData::create([
-            'varietas' => 'Edamame',
-            'jenis_benih' => 'kedelai',
-            'stok_benih' => 200,
-            'kualitas_benih' => 'Benih Pokok',
-            'harga_benih' => 15000,
-            'foto_benih' => url("/img/benih/{$image}"),
-            'tgl_masuk' => now(),
-            'turun_gudang' => 10,
-            'jemur_kering' => 10,
-            'blower1' => 10,
-            'benih_susut' => 10,
-            'biji_kecil' => 10,
-            'jumlah_benih' => 10,
-            'id_akunp' => $userProdusen1->id
-        ]);
+        // $benih1 = BenihData::create([
+        //     'varietas' => 'Edamame',
+        //     'jenis_benih' => 'kedelai',
+        //     'stok_benih' => 200,
+        //     'kualitas_benih' => 'Benih Pokok',
+        //     'harga_benih' => 15000,
+        //     'foto_benih' => url("/img/benih/{$image}"),
+        //     'tgl_masuk' => now(),
+        //     'turun_gudang' => 10,
+        //     'jemur_kering' => 10,
+        //     'blower1' => 10,
+        //     'benih_susut' => 10,
+        //     'biji_kecil' => 10,
+        //     'jumlah_benih' => 10,
+        //     'id_akunp' => $userProdusen1->id
+        // ]);
 
-        $benih1 = BenihData::create([
-            'varietas' => 'Logawa',
-            'jenis_benih' => 'padi',
-            'stok_benih' => 170,
-            'kualitas_benih' => 'Benih Pokok',
-            'harga_benih' => 20000,
-            'foto_benih' => url("/img/benih/{$image}"),
-            'tgl_masuk' => now(),
-            'turun_gudang' => 10,
-            'jemur_kering' => 10,
-            'blower1' => 10,
-            'benih_susut' => 10,
-            'biji_kecil' => 10,
-            'jumlah_benih' => 10,
-            'id_akunp' => $userProdusen1->id
-        ]);
-        $benih2 = BenihData::create([
-            'varietas' => 'Kedelai Putih',
-            'jenis_benih' => 'kedelai',
-            'stok_benih' => 200,
-            'kualitas_benih' => 'Benih Pokok',
-            'harga_benih' => 20000,
-            'foto_benih' => url("/img/benih/{$image}"),
-            'tgl_masuk' => now(),
-            'turun_gudang' => 10,
-            'jemur_kering' => 10,
-            'blower1' => 10,
-            'benih_susut' => 10,
-            'biji_kecil' => 10,
-            'jumlah_benih' => 10,
-            'id_akunp' => $userProdusen2->id
-        ]);
+        // $benih1 = BenihData::create([
+        //     'varietas' => 'Logawa',
+        //     'jenis_benih' => 'padi',
+        //     'stok_benih' => 170,
+        //     'kualitas_benih' => 'Benih Pokok',
+        //     'harga_benih' => 20000,
+        //     'foto_benih' => url("/img/benih/{$image}"),
+        //     'tgl_masuk' => now(),
+        //     'turun_gudang' => 10,
+        //     'jemur_kering' => 10,
+        //     'blower1' => 10,
+        //     'benih_susut' => 10,
+        //     'biji_kecil' => 10,
+        //     'jumlah_benih' => 10,
+        //     'id_akunp' => $userProdusen1->id
+        // ]);
+        // $benih2 = BenihData::create([
+        //     'varietas' => 'Kedelai Putih',
+        //     'jenis_benih' => 'kedelai',
+        //     'stok_benih' => 200,
+        //     'kualitas_benih' => 'Benih Pokok',
+        //     'harga_benih' => 20000,
+        //     'foto_benih' => url("/img/benih/{$image}"),
+        //     'tgl_masuk' => now(),
+        //     'turun_gudang' => 10,
+        //     'jemur_kering' => 10,
+        //     'blower1' => 10,
+        //     'benih_susut' => 10,
+        //     'biji_kecil' => 10,
+        //     'jumlah_benih' => 10,
+        //     'id_akunp' => $userProdusen2->id
+        // ]);
 
-        $benih2 = BenihData::create([
-            'varietas' => 'Padi Ketan',
-            'jenis_benih' => 'padi',
-            'stok_benih' => 150,
-            'kualitas_benih' => 'Benih Pokok',
-            'harga_benih' => 35000,
-            'foto_benih' => url("/img/benih/{$image}"),
-            'tgl_masuk' => now(),
-            'turun_gudang' => 10,
-            'jemur_kering' => 10,
-            'blower1' => 10,
-            'benih_susut' => 10,
-            'biji_kecil' => 10,
-            'jumlah_benih' => 10,
-            'id_akunp' => $userProdusen2->id
-        ]);
-        $benih3 = BenihData::create([
-            'varietas' => 'Kedelai Kuning',
-            'jenis_benih' => 'kedelai',
-            'stok_benih' => 200,
-            'kualitas_benih' => 'Benih Pokok',
-            'harga_benih' => 12000,
-            'foto_benih' => url("/img/benih/{$image}"),
-            'tgl_masuk' => now(),
-            'turun_gudang' => 10,
-            'jemur_kering' => 10,
-            'blower1' => 10,
-            'benih_susut' => 10,
-            'biji_kecil' => 10,
-            'jumlah_benih' => 10,
-            'id_akunp' => $userProdusen3->id
-        ]);
+        // $benih2 = BenihData::create([
+        //     'varietas' => 'Padi Ketan',
+        //     'jenis_benih' => 'padi',
+        //     'stok_benih' => 150,
+        //     'kualitas_benih' => 'Benih Pokok',
+        //     'harga_benih' => 35000,
+        //     'foto_benih' => url("/img/benih/{$image}"),
+        //     'tgl_masuk' => now(),
+        //     'turun_gudang' => 10,
+        //     'jemur_kering' => 10,
+        //     'blower1' => 10,
+        //     'benih_susut' => 10,
+        //     'biji_kecil' => 10,
+        //     'jumlah_benih' => 10,
+        //     'id_akunp' => $userProdusen2->id
+        // ]);
+        // $benih3 = BenihData::create([
+        //     'varietas' => 'Kedelai Kuning',
+        //     'jenis_benih' => 'kedelai',
+        //     'stok_benih' => 200,
+        //     'kualitas_benih' => 'Benih Pokok',
+        //     'harga_benih' => 12000,
+        //     'foto_benih' => url("/img/benih/{$image}"),
+        //     'tgl_masuk' => now(),
+        //     'turun_gudang' => 10,
+        //     'jemur_kering' => 10,
+        //     'blower1' => 10,
+        //     'benih_susut' => 10,
+        //     'biji_kecil' => 10,
+        //     'jumlah_benih' => 10,
+        //     'id_akunp' => $userProdusen3->id
+        // ]);
 
-        $benih3 = BenihData::create([
-            'varietas' => 'Padi Merah',
-            'jenis_benih' => 'padi',
-            'stok_benih' => 150,
-            'kualitas_benih' => 'Benih Pokok',
-            'harga_benih' => 25000,
-            'foto_benih' => url("/img/benih/{$image}"),
-            'tgl_masuk' => now(),
-            'turun_gudang' => 10,
-            'jemur_kering' => 10,
-            'blower1' => 10,
-            'benih_susut' => 10,
-            'biji_kecil' => 10,
-            'jumlah_benih' => 10,
-            'id_akunp' => $userProdusen3->id
-        ]);
+        // $benih3 = BenihData::create([
+        //     'varietas' => 'Padi Merah',
+        //     'jenis_benih' => 'padi',
+        //     'stok_benih' => 150,
+        //     'kualitas_benih' => 'Benih Pokok',
+        //     'harga_benih' => 25000,
+        //     'foto_benih' => url("/img/benih/{$image}"),
+        //     'tgl_masuk' => now(),
+        //     'turun_gudang' => 10,
+        //     'jemur_kering' => 10,
+        //     'blower1' => 10,
+        //     'benih_susut' => 10,
+        //     'biji_kecil' => 10,
+        //     'jumlah_benih' => 10,
+        //     'id_akunp' => $userProdusen3->id
+        // ]);
 
-        $pesanan = Pesanan::create([
-            'id_benih' => $benih1->id_benih,
-            'id_user' => $user->id,
-            'quantity' => 10,
-            'harga' => 50000,
-            'alamat_lengkap' => 'Jl. Papua',
-            'telepon' => '082318471623',
-        ]);
+        // $pesanan = Pesanan::create([
+        //     'id_benih' => $benih1->id_benih,
+        //     'id_user' => $user->id,
+        //     'quantity' => 10,
+        //     'harga' => 50000,
+        //     'alamat_lengkap' => 'Jl. Papua',
+        //     'telepon' => '082318471623',
+        // ]);
     }
 }

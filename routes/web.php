@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BenihDataController;
 use App\Http\Controllers\DataPencatatanController;
+use App\Http\Controllers\MonitoringDinasController;
 use App\Http\Controllers\PermintaanPesananController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProductController;
@@ -83,6 +84,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/detail/{id}', 'detail');
             Route::get('/checkout/{id}/{quantity}', 'checkout');
         });
+    });
+
+    Route::controller(MonitoringDinasController::class)->group(function () {
+        Route::get('/dinas/monitoring', 'index');
     });
 });
 

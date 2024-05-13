@@ -158,7 +158,9 @@
                                         </ul>
                                     </li>
                                     <li class="{{ request()->segment(1) == 'profil' ? 'active' : '' }}"><a href="#">Profil</a></li>
-                                    <li class="{{ request()->segment(1) == 'monitoring-dan-edukasi' ? 'active' : '' }}"><a href="#">Monitoring dan Edukasi</a></li>
+                                    @if (Auth::user()->role == 'AKUN DINAS')
+                                        <li class="{{ request()->segment(1) == 'monitoring-dan-edukasi' ? 'active' : '' }}"><a href="/dinas/monitoring">Monitoring dan Edukasi</a></li>
+                                    @endif
                                     <li class="{{ request()->segment(1) == 'pesanan' ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}">Pesanan</a></li>
                                     @if (Auth::user()->role == 'PRODUSEN' || Auth::user()->role == 'AKUN DINAS')
                                         <li class="{{ request()->segment(1) == 'permintaan-pesanan' ? 'active' : '' }}"><a href="{{ url('/permintaan-pesanan') }}">Permintaan Pesanan</a></li>
