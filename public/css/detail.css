@@ -1,0 +1,92 @@
+.image {
+  width: 367px;
+  height: 409px;
+  overflow: hidden;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Menjaga proporsi gambar */
+}
+
+.content {
+  height: 359px; /* Maintains container height */
+  padding: 10px; /* Adjust padding for spacing */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distributes content vertically */
+}
+
+.content h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.content p {
+  font-size: 16px; /* Adjust font size as needed */
+  line-height: 1.2; /* Adjust line-height for spacing */
+}
+
+/* New element for buttons */
+.button-container {
+  display: flex; /* Removed flex:1 for spacing control */
+  justify-content: flex-end; /* Aligns buttons to the right */
+}
+
+.button-edit, .button-hapus {
+  margin: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bg-yellow {
+  background-color: yellow;
+  color: black; /* Ubah warna teks sesuai kebutuhan */
+}
+
+.text-merah {
+  color: red;
+}
+
+.text-with-underline {
+  border-bottom: 1px solid black;
+  display: inline-block;
+  padding-bottom: 0,0001 cm; /* Panjang garis bawah */
+}
+
+
+.button-edit:hover, .button-hapus:hover {
+  background-color: #ccc;
+}
+
+.tambah-bibit-inner {
+  width: 70%; /* Ubah lebar menjadi 70% */
+  float: left;
+  padding: 20px;
+}
+/* CSS untuk pop-up konfirmasi */
+.confirmation-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  display: none;
+}
+
+.confirmation-popup h2 {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.confirmation-popup button {
+  margin-right: 10px;
+}

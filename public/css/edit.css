@@ -1,0 +1,36 @@
+.edit-bibit {
+    width: 70%; /* Ubah lebar menjadi 70% */
+    margin: 0 auto;
+  }
+  .edit-bibit::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+.img-preview {
+  float: right;
+  margin-top: 20px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+  
+  .img-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

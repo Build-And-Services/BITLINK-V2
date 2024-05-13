@@ -1,0 +1,74 @@
+.tambah-bibit-inner {
+    width: 100%;
+    float: left;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .form-group select {
+    height: 34px;
+  }
+  
+  .form-group.inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .form-group.inline .form-control {
+    width: 45%;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    padding: 8px 20px;
+    font-size: 16px;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0069d9;
+  }
+  
+  .img-preview {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+  
+  .img-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
