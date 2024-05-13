@@ -14,7 +14,18 @@ class ManageUserController extends Controller
 {
     public function pembeli()
     {
-        return view('frontend.users.pembeli.index');
+        try {
+            DB::beginTransaction();
+            $pembeli = DB::table('users')->where('role', 'AKUN DINAS NON NGANJUK')->get();
+            DB::commit();
+            return view('frontend.users.pembeli.index', compact('pembeli'));
+
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError($e->getMessage());
+        }
     }
 
     public function produsen()
@@ -47,20 +58,22 @@ class ManageUserController extends Controller
 
     public function storeProdusen(Request $request)
     {
+        $request->validate([
+            'nama' => 'required',
+            'nama_perusahaan' => 'required',
+            'nomor_legalitas' => 'required',
+            'alamat' => 'required',
+            'telephone' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'id_kemitraan' => 'required'
+        ]);
         try {
             DB::beginTransaction();
             // dd('aaa');
-            $validated = $request->validate([
-                'nama' => 'required',
-                'nama_perusahaan' => 'required',
-                'nomor_legalitas' => 'required',
-                'alamat' => 'required',
-                'telephone' => 'required',
-                'username' => 'required',
-                'email' => 'required',
-                'password' => 'required',
-                'id_kemitraan' => 'required'
-            ]);
+
+            // dd($request->all());
 
             $produsenUser = User::create([
                 'name' => $request->nama,
@@ -68,9 +81,10 @@ class ManageUserController extends Controller
                 'username' => $request->username,
                 'alamat_lengkap' => $request->alamat,
                 'telepon' => $request->telephone,
+                'role' => 'PRODUSEN',
                 'password' => Hash::make($request->password),
-                'role' => 'PRODUSEN'
             ]);
+            // dd('sesss');
 
             DataAkunProdusen::create([
                 'id_user' => $produsenUser->id,
@@ -81,6 +95,7 @@ class ManageUserController extends Controller
             DB::commit();
             return redirect('/manage-users/produsen')->with('success', 'Data produsen berhasil ditambahkan.');
         } catch (\Throwable $e) {
+            // dd($e);
             DB::rollBack();
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

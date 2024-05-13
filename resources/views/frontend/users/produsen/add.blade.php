@@ -1,6 +1,19 @@
 @extends('frontend.layouts.master')
 @section('content')
     <div class="container my-5">
+        @session('error')
+            <p class="alert alert-danger">{{ session('error') }}</p>
+        @endsession
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <a href="{{ route('produsen.index') }}">
             <i class="fa-regular fa-circle-left fa-2xl"></i>
         </a>

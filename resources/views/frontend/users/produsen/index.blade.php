@@ -43,7 +43,7 @@
                             <td>{{ $produsen->nomor_legalitas_usaha }}</td>
                             <td>{{ $produsen->user->alamat_lengkap }}</td>
                             <td>{{ $produsen->user->email }}</td>
-                            <td>{{ $produsen->user->telephone }}</td>
+                            <td>{{ $produsen->user->telepon }}</td>
                             <td>{{ $produsen->user->username }}</td>
                         </tr>
                     @endforeach
