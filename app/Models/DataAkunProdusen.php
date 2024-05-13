@@ -37,4 +37,7 @@ class DataAkunProdusen extends Model
     public function dataEvaluasi(){
         return $this->hasMany(DataEvaluasi::class, 'id', 'id_akunp');
     }
+    public function dataEdukasi(){
+        return $this->hasMany(DataEdukasi::class, 'id', 'id_akunp');
+    }
 }

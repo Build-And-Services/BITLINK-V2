@@ -60,7 +60,7 @@
     </head>
 
     <body>
-        @if (session('error'))
+        {{-- @if (session('error'))
     <div class="alert alert-danger" role="alert">
         {{session('error')}}
     </div>
@@ -68,7 +68,7 @@
     <div class="alert alert-success" role="alert">
         {{session('success')}}
     </div>
-    @endif
+    @endif --}}
         <div class="preloader">
             <div class="loader">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"
@@ -178,7 +178,7 @@
                                                 <a href="#">Monitoring <i class="icofont-rounded-down"></i></a>
                                                 <ul class="dropdown">
                                                     <li><a href="{{ url('/monitoring-dinas/laporan-bulanan/dinas') }}">Laporan Kinerja</a></li>
-                                                    <li><a href="{{ url('/monitoring-dinas/edukasi/dinas') }}">Edukasi</a></li>
+                                                    <li><a href="{{ url('/monitoring-edukasi') }}">Edukasi</a></li>
                                                 </ul>
                                             </li>
                                             @endif
