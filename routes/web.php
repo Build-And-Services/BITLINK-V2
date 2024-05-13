@@ -91,9 +91,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('manage-users')->group(function () {
         Route::get('/pembeli', [ManageUserController::class, 'pembeli'])->name('pembeli.index');
         Route::get('/produsen', [ManageUserController::class, 'produsen'])->name('produsen.index');
+        Route::get('/addprodusen', [ManageUserController::class, 'createProdusen'])->name('produsen.create');
+        Route::post('/storeprodusen', [ManageUserController::class, 'storeProdusen'])->name('produsen.store');
     });
 
-    Route::controller(ProfileController::class)->group(function(){
+    Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'index')->name('profile');
         Route::put('/profile', 'update')->name('profile.update');
     });
