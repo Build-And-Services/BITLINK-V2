@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BenihDataController;
 use App\Http\Controllers\DataPencatatanController;
+use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\PermintaanPesananController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProductController;
@@ -83,6 +84,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/detail/{id}', 'detail');
             Route::get('/checkout/{id}/{quantity}', 'checkout');
         });
+    });
+
+    Route::prefix('manage-users')->group(function () {
+        Route::get('/pembeli', [ManageUserController::class, 'pembeli'])->name('pembeli.index');
+        Route::get('/produsen', [ManageUserController::class, 'produsen'])->name('produsen.index');
     });
 });
 
