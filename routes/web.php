@@ -8,6 +8,7 @@ use App\Http\Controllers\MonitoringProdusenController;
 use App\Http\Controllers\PermintaanPesananController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -91,18 +92,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/pembeli', [ManageUserController::class, 'pembeli'])->name('pembeli.index');
         Route::get('/produsen', [ManageUserController::class, 'produsen'])->name('produsen.index');
     });
-    Route::get('/profile', function() {
-        return view('produsen.profile.index');
-    })->name('profile');
-    Route::prefix('monitoring')->group(function () {
-        Route::controller(MonitoringProdusenController::class)->group(function () {
-            Route::get('/laporan-bulanan', 'laporanBulanan');
-            Route::get('/laporan-bulanan/create', 'createLaporan');
-            Route::post('/laporan-bulanan', 'storeLaporan')->name('produsen.laporan.store');
-            Route::get('/laporan-bulanan/{id}', 'showLaporan')->name('produsen.laporan.detail');
-            Route::put('/laporan-bulanan/{id}', 'updateLaporan')->name('produsen.laporan.update');
-            Route::delete('/laporan-bulanan/delete/{id}', 'destroyLaporan')->name('produsen.laporan.destroy');
-        });
+
+    Route::controller(ProfileController::class)->group(function(){
+        Route::get('/profile', 'index')->name('profile');
+        Route::put('/profile', 'update')->name('profile.update');
     });
 });
 

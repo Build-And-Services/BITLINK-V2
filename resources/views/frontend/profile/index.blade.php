@@ -37,6 +37,23 @@
                     </div>
                     <div class="card-body row">
                         <div class="col-12">
+                            @session('success')
+                                <p class="alert alert-success">{{ session('success') }}</p>
+                            @endsession
+
+                            @session('error')
+                                <p class="alert alert-danger">{{ session('error') }}</p>
+                            @endsession
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5>Biodata diri</h5>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
@@ -51,31 +68,45 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="" method="post" id="form-edit">
+                                                <form action="{{ route('profile.update') }}" method="post" id="form-edit">
                                                     @csrf
+                                                    @method('PUT')
                                                     <div class="form-group">
                                                         <label for="name" class="col-form-label">nama</label>
                                                         <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control" id="name">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="name_perusahaaan" class="col-form-label">nama perusahaaan</label>
-                                                        <input type="text" name="name_perusahaaan" value="{{ Auth::user()->dataProdusen->nama_perusahaan }}" class="form-control" id="name_perusahaaan">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nomor_legalitas_usaha" class="col-form-label">nomor legalitas usahah</label>
-                                                        <input type="text" name="nomor_legalitas_usaha" value="{{ Auth::user()->dataProdusen->nomor_legalitas_usaha }}" class="form-control" id="nomor_legalitas_usaha">
-                                                    </div>
+                                                    @if(Auth::user()->role == "PRODUSEN")                                                        
+                                                        <div class="form-group">
+                                                            <label for="name_perusahaaan" class="col-form-label">nama perusahaaan</label>
+                                                            <input type="text" name="nama_perusahaan" value="{{ Auth::user()->dataProdusen->nama_perusahaan }}" class="form-control" id="name_perusahaaan">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="nomor_legalitas_usaha" class="col-form-label">nomor legalitas usahah</label>
+                                                            <input type="text" name="nomor_legalitas_usaha" value="{{ Auth::user()->dataProdusen->nomor_legalitas_usaha }}" class="form-control" id="nomor_legalitas_usaha">
+                                                        </div>
+                                                    @endif
+
+                                                    @if (Auth::user()->role == "AKUN DINAS")
+                                                        <div class="form-group">
+                                                            <label for="name_perusahaaan" class="col-form-label">nama instansi</label>
+                                                            <input type="text" name="nama_perusahaan" value="{{ Auth::user()->dinas->nama_instansi }}" class="form-control" id="name_perusahaaan">
+                                                        </div>           
+                                                    @endif
                                                     <div class="form-group">
                                                         <label for="alamat_lengkap" class="col-form-label">alamat lengkap</label>
-                                                        <input type="text" name="alamat_lengkap" value="{{ Auth::user()->dataProdusen->alamat_lengkap }}" class="form-control" id="alamat_lengkap">
+                                                        <input type="text" name="alamat_lengkap" value="{{ Auth::user()->alamat_lengkap }}" class="form-control" id="alamat_lengkap">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="telepone" class="col-form-label">telephone</label>
-                                                        <input type="text" name="telepone" value="{{ Auth::user()->dataProdusen->telepon }}" class="form-control" id="telepone">
+                                                        <input type="text" name="telepon" value="{{ Auth::user()->telepon }}" class="form-control" id="telepone">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="email" class="col-form-label">email</label>
                                                         <input type="email" name="email" value="{{ Auth::user()->email   }}" class="form-control" id="email">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="username" class="col-form-label">username</label>
+                                                        <input type="text" name="username" value="{{ Auth::user()->username   }}" class="form-control" id="username">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="email" class="col-form-label">password</label>
@@ -92,48 +123,57 @@
                                 </div>
                             </div>
                             <div class="row mt-4">
-                                <div class="mb-2 col-3">
+                                <div class="mb-2 col-4">
                                     <h6>Nama</h6>
                                 </div>
-                                <div class="mb-2 col-9">
+                                <div class="mb-2 col-8">
                                     <p>{{ Auth::user()->name }}</p>
                                 </div>
-                                @isset(Auth::user()->dataProdusen)                          
-                                    <div class="mb-2 col-3">
+                                @if(Auth::user()->role == "PRODUSEN")                          
+                                    <div class="mb-2 col-4">
                                         <h6>Nama Perusahaan</h6>
                                     </div>
-                                    <div class="mb-2 col-9">
+                                    <div class="mb-2 col-8">
                                         <p>{{ Auth::user()->dataProdusen->nama_perusahaan }}</p>
                                     </div>
-                                    <div class="mb-2 col-3">
+                                    <div class="mb-2 col-4">
                                         <h6>No. Legalitas</h6>
                                     </div>
-                                    <div class="mb-2 col-9">
+                                    <div class="mb-2 col-8">
                                         <p>{{ Auth::user()->dataProdusen->nomor_legalitas_usaha }}</p>
                                     </div>
-                                    <div class="mb-2 col-3">
-                                        <h6>Alamat Lengkap</h6>
+                                @endif
+
+                                @if(Auth::user()->role == "AKUN DINAS")                          
+                                    <div class="mb-2 col-4">
+                                        <h6>Nama Instansi</h6>
                                     </div>
-                                    <div class="mb-2 col-9">
-                                        <p>{{ Auth::user()->dataProdusen->alamat_lengkap }}</p>
+                                    <div class="mb-2 col-8">
+                                        <p>{{ Auth::user()->dinas->nama_instansi }}</p>
                                     </div>
-                                    <div class="mb-2 col-3">
-                                        <h6>Telephone</h6>
-                                    </div>
-                                    <div class="mb-2 col-9">
-                                        <p>{{ Auth::user()->dataProdusen->telepon }}</p>
-                                    </div>
-                                @endisset
-                                <div class="mb-2 col-3">
+                                @endif
+                                <div class="mb-2 col-4">
+                                    <h6>Alamat Lengkap</h6>
+                                </div>
+                                <div class="mb-2 col-8">
+                                    <p>{{ Auth::user()->alamat_lengkap }}</p>
+                                </div>
+                                <div class="mb-2 col-4">
+                                    <h6>Telephone</h6>
+                                </div>
+                                <div class="mb-2 col-8">
+                                    <p>{{ Auth::user()->telepon }}</p>
+                                </div>
+                                <div class="mb-2 col-4">
                                     <h6>Email</h6>
                                 </div>
-                                <div class="mb-2 col-9">
+                                <div class="mb-2 col-8">
                                     <p>{{ Auth::user()->email }}</p>
                                 </div>
-                                <div class="mb-2 col-3">
+                                <div class="mb-2 col-4">
                                     <h6>Username</h6>
                                 </div>
-                                <div class="mb-2 col-9">
+                                <div class="mb-2 col-8">
                                     <p>{{ Auth::user()->username }}</p>
                                 </div>
                             </div>
@@ -149,6 +189,7 @@
 @push('scripts')
     <script>
         var buttonSubmit = document.getElementById('simpan-form');
+        console.log('ok');
         if(buttonSubmit){
             buttonSubmit.addEventListener('click', () => {
                 var formEdit = document.getElementById('form-edit');
