@@ -103,16 +103,22 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('monitoring')->group(function () {
         Route::controller(MonitoringProdusenController::class)->group(function () {
+            Route::get('/', 'index');
             Route::get('/laporan-bulanan', 'laporanBulanan');
             Route::get('/laporan-bulanan/create', 'createLaporan');
             Route::post('/laporan-bulanan', 'storeLaporan')->name('produsen.laporan.store');
             Route::get('/laporan-bulanan/{id}', 'showLaporan')->name('produsen.laporan.detail');
             Route::put('/laporan-bulanan/{id}', 'updateLaporan')->name('produsen.laporan.update');
             Route::delete('/laporan-bulanan/delete/{id}', 'destroyLaporan')->name('produsen.laporan.destroy');
-
+            Route::get('/riwayat-pencatatan', 'riwayatPencatatan')->name('riwayat.pencatatan');
+            Route::get('/edukasi/produsen', 'edukasiProdusen')->name('edukasi.produsen');
+            Route::post('/edukasi/produsen', 'storeEdukasiProdusen')->name('edukasi.produsen');
+            Route::get('/edukasi/produsen/{id}', 'showEdukasiProdusen')->name('show.edukasi.produsen');
+            Route::put('/edukasi/produsen/{id}', 'updateEdukasiProdusen')->name('update.edukasi.produsen');
+            Route::get('/edukasi/produsen/delete/{id}', 'destroyEdukasiProdusen')->name('destroy.edukasi.produsen');
         });
-
     });
+
 
     Route::prefix('monitoring-dinas')->group(function () {
         Route::controller(MonitoringDinasController::class)->group(function () {

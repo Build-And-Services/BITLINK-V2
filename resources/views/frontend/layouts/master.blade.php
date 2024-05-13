@@ -166,13 +166,11 @@
                                             @if (Auth::user()->role == 'PRODUSEN')
                                                 <li
                                                     class="{{ request()->segment(1) == 'monitoring' ? 'active' : '' }}">
-                                                    <a href="#">Monitoring <i
-                                                            class="icofont-rounded-down"></i></a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="{{ url('/monitoring/laporan-bulanan') }}">Laporan
-                                                                Kinerja</a></li>
-                                                        <li><a href="{{ url('/') }}">Edukasi</a></li>
-                                                    </ul>
+                                                    <a href="{{url('/monitoring')}}">Monitoring</a>
+                                                    {{-- <ul class="dropdown">
+                                                        <li><a href="{{ url('/monitoring') }}">Monitoring</a></li>
+                                                        <li><a href="{{ url('/monitoring/edukasi/produsen') }}">Edukasi</a></li>
+                                                    </ul> --}}
                                                 </li>
                                             @endif
                                             @if (Auth::user()->role == 'AKUN DINAS')
