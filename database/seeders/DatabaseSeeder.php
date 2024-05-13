@@ -215,6 +215,7 @@ class DatabaseSeeder extends Seeder
             'id_user' => $user->id,
             'nama_penerima' => 'joko',
             'quantity' => 10,
+            'nama_penerima' => "Joko",
             'harga' => 50000,
             'alamat_lengkap' => 'Jl. Papua',
             'telepon' => '082318471623',
