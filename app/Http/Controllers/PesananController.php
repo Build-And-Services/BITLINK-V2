@@ -40,7 +40,7 @@ class PesananController extends Controller
             ->select([
                 'data_akun_produsen.nama_perusahaan',
                 'data_akun_produsen.nomor_legalitas_usaha',
-                'data_akun_produsen.alamat_lengkap'
+                'users.alamat_lengkap'
             ])->first();
         return view(
             'frontend.pesanan.invoice',
@@ -145,7 +145,7 @@ class PesananController extends Controller
                 ->select([
                     'data_akun_produsen.nama_perusahaan',
                     'data_akun_produsen.nomor_legalitas_usaha',
-                    'data_akun_produsen.alamat_lengkap'
+                    'users.alamat_lengkap'
                 ])->first();
             return view(
                 'frontend.pesanan.history',
