@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BenihDataController;
 use App\Http\Controllers\DataPencatatanController;
+use App\Http\Controllers\EdukasiController;
 use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\MonitoringDinasController;
 use App\Http\Controllers\MonitoringProdusenController;
@@ -111,14 +112,20 @@ Route::middleware('auth')->group(function () {
             Route::put('/laporan-bulanan/{id}', 'updateLaporan')->name('produsen.laporan.update');
             Route::delete('/laporan-bulanan/delete/{id}', 'destroyLaporan')->name('produsen.laporan.destroy');
             Route::get('/riwayat-pencatatan', 'riwayatPencatatan')->name('riwayat.pencatatan');
-            Route::get('/edukasi/produsen', 'edukasiProdusen')->name('edukasi.produsen');
-            Route::post('/edukasi/produsen', 'storeEdukasiProdusen')->name('edukasi.produsen');
-            Route::get('/edukasi/produsen/{id}', 'showEdukasiProdusen')->name('show.edukasi.produsen');
-            Route::put('/edukasi/produsen/{id}', 'updateEdukasiProdusen')->name('update.edukasi.produsen');
-            Route::get('/edukasi/produsen/delete/{id}', 'destroyEdukasiProdusen')->name('destroy.edukasi.produsen');
         });
     });
 
+    Route::prefix('monitoring-edukasi')->group(function () {
+        Route::controller(EdukasiController::class)->group(function () {
+            Route::get('/', 'index')->name('edukasi.index');
+            Route::get('/create', 'createEdukasi')->name('edukasi.create');
+            Route::post('/', 'storeEdukasiProdusen')->name('edukasi.store.produsen');
+            Route::post('/dinas', 'storeEdukasiDinas')->name('edukasi.store.dinas');
+            // Route::get('/edukasi/edit/{id}', 'showEdukasi')->name('edukasi.show');
+            // Route::put('/edukasi/{id}', 'updateEdukasi')->name('edukasi.update');
+            // Route::get('/edukasi/delete/{id}', 'destroyEdukasi')->name('edukasi.destroy');
+        });
+    });
 
     Route::prefix('monitoring-dinas')->group(function () {
         Route::controller(MonitoringDinasController::class)->group(function () {

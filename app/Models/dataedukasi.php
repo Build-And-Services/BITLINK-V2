@@ -17,10 +17,15 @@ class DataEdukasi extends Model
         'judul_edukasi',
         'isi_edukasi',
         'id_akunp',
+        'id_akun_dinas',
     ];
 
     public function akunProdusen(): BelongsTo
     {
-        return $this->belongsTo(DataAkunProdusen::class, 'id', 'id_akunp');
+        return $this->belongsTo(DataAkunProdusen::class, 'id_akunp', 'id_user');
+    }
+    public function akunDinas(): BelongsTo
+    {
+        return $this->belongsTo(DinasNganjuk::class, 'id_akun_dinas', 'id_user');
     }
 }

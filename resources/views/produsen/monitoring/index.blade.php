@@ -45,7 +45,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Edukasi</h5>
                         <h6 class="card-subtitle mb-2 text-muted"></h6>
-                        <a href="{{ url('/monitoring/edukasi/produsen') }}" class="d-flex justify-content-center mt-4">
+                        <a href="{{ url('/monitoring-edukasi') }}" class="d-flex justify-content-center mt-4">
                             <button class="btn btn-primary">
                                 Lihat Edukasi
                             </button>
