@@ -92,24 +92,21 @@ class DatabaseSeeder extends Seeder
             'id_user' => $userProdusen1->id,
             'nama_perusahaan' => 'PT Gudang Garam Merah',
             'nomor_legalitas_usaha' => '9120106570390',
-            'alamat_lengkap' => 'Jl Sumatera',
-            'telepon' => '087178903345',
+
             'id_kemitraan' => $mitra1->id_kemitraan,
         ]);
         $dataProdusen2 = DataAkunProdusen::create([
             'id_user' => $userProdusen2->id,
             'nama_perusahaan' => 'PT HM Sampoerna',
             'nomor_legalitas_usaha' => '9120106577843',
-            'alamat_lengkap' => 'Jl Kalimantan',
-            'telepon' => '087178903345',
+
             'id_kemitraan' => $mitra2->id_kemitraan,
         ]);
         $dataProdusen3 = DataAkunProdusen::create([
             'id_user' => $userProdusen3->id,
             'nama_perusahaan' => 'PT Djarum Indonesia',
             'nomor_legalitas_usaha' => '9120106574387',
-            'alamat_lengkap' => 'Jl Riau',
-            'telepon' => '087178903345',
+
             'id_kemitraan' => $mitra3->id_kemitraan,
         ]);
 
@@ -216,6 +213,7 @@ class DatabaseSeeder extends Seeder
         $pesanan = Pesanan::create([
             'id_benih' => $benih1->id_benih,
             'id_user' => $user->id,
+            'nama_penerima' => 'joko',
             'quantity' => 10,
             'harga' => 50000,
             'alamat_lengkap' => 'Jl. Papua',
