@@ -56,8 +56,8 @@
         <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
             data-client-key="{{ config('midtrans.client_key') }}"></script>
 
-    @stack('stylesheet')
-</head>
+        @stack('stylesheet')
+    </head>
 
     <body>
         <div class="preloader">
@@ -143,21 +143,28 @@
                                                     <li><a href="{{ url('/kedelai') }}">Benih Kedelai</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="{{ request()->segment(1) == 'manage-user' ? 'active' : '' }}"><a
-                                                    href="#">Manage User <i class="icofont-rounded-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="{{ route('pembeli.index') }}">Pembeli</a></li>
-                                                    <li><a href="{{ route('produsen.index') }}">Produsen</a></li>
-                                                </ul>
-                                            </li>
+                                            @if (Auth::user()->role == 'AKUN DINAS')
+                                                <li
+                                                    class="{{ request()->segment(1) == 'manage-users' ? 'active' : '' }}">
+                                                    <a href="#">Manage User <i
+                                                            class="icofont-rounded-down"></i></a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="{{ route('pembeli.index') }}">Pembeli</a></li>
+                                                        <li><a href="{{ route('produsen.index') }}">Produsen</a></li>
+                                                    </ul>
+                                                </li>
+                                            @endif
                                             @if (Auth::user()->role == 'PRODUSEN')
-                                            <li class="{{ request()->segment(1) == 'monitoring' ? 'active' : '' }}">
-                                                <a href="#">Monitoring <i class="icofont-rounded-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="{{ url('/monitoring/laporan-bulanan') }}">Laporan Kinerja</a></li>
-                                                    <li><a href="{{ url('/') }}">Edukasi</a></li>
-                                                </ul>
-                                            </li>
+                                                <li
+                                                    class="{{ request()->segment(1) == 'monitoring' ? 'active' : '' }}">
+                                                    <a href="#">Monitoring <i
+                                                            class="icofont-rounded-down"></i></a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="{{ url('/monitoring/laporan-bulanan') }}">Laporan
+                                                                Kinerja</a></li>
+                                                        <li><a href="{{ url('/') }}">Edukasi</a></li>
+                                                    </ul>
+                                                </li>
                                             @endif
                                             <li class="{{ request()->segment(1) == 'pesanan' ? 'active' : '' }}"><a
                                                     href="{{ route('pesanan.index') }}">Pesanan</a></li>
