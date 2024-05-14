@@ -63,7 +63,7 @@ class ProfileController extends Controller
             return redirect()->route('profile')->with('success', 'Data Berhasil dirubah.');
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('profile')->with('error', 'Data Gagal Berhasil dirubah.');
+            return redirect()->route('profile')->with('error', $th->getMessage());
         }
     }
 }

@@ -76,7 +76,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="form-group col-sm-6"> <button type="submit"
-                                    class="btn-block btn btn-primary">Sumbit</button> </div>
+                                    class="btn-block btn btn-primary">Submit</button> </div>
                         </div>
                     </form>
                 </div>

@@ -4,7 +4,7 @@
 <section class="container my-5">
     <div class="row">
         @foreach ($produsen as $item)
-            <div class="col-4">
+            <div class="col-4" style="margin-top: 1rem;">
                 <div class="card">
                     <div class="card-body">
                     <h5 class="card-title">{{$item->user->name}}</h5>
