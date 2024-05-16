@@ -18,9 +18,11 @@
                 <h6>Edukasi</h6>
             </div>
             <div>
-                <a class="btn btn-primary" href="{{url('/monitoring-edukasi/create')}}">
-                    Tambah Data
-                </a>
+                @if (Auth::user()->role == 'AKUN DINAS')
+                    <a class="btn btn-primary" href="{{url('/monitoring-edukasi/create')}}">
+                        Tambah Data
+                    </a>
+                @endif
             </div>
         </div>
         @if (session('error'))
@@ -41,7 +43,7 @@
                 </div>
                 @else
                     @foreach ($getEdukasi as $item)
-                    <div class="col-3 mt-3">
+                    <div class="col-12 mt-3">
                         <div class="card text-light" style="background-color: #01B2B7">
                             <div class="card-body">
                                 <div class="icon">
@@ -51,17 +53,14 @@
                                     <span>Edukasi</span>
                                     <h4>{{$item->judul_edukasi}}</h4>
                                     <h6>{{$item->tanggal_edukasi}}</h6>
-                                    <p class="text-light">{{$item->isi_edukasi}}</p>
+                                    <p class="text-light">{{Str::limit($item->isi_edukasi, 50, '...')}}</p>
                                     <a>Ditambahkan oleh : {{$item->nama_produsen}} {{$item->nama_dinas}}</i></a>
                                 </div>
-                                {{-- <div class="mt-3">
-                                    <a class="btn-warning px-3 py-2 rounded mr-2" href="{{url('/monitoring-edukasi/edit', $item->id_edukasi)}}">
-                                        Edit
+                                <div class="mt-3">
+                                    <a class="btn-warning px-3 py-2 rounded mr-2" href="{{url('/monitoring-edukasi/show', $item->id_edukasi)}}">
+                                        Lihat Detail
                                     </a>
-                                    <a class="btn-danger px-3 py-2 rounded" href="{{url('/monitoring-edukasi/delete', $item->id_edukasi)}}">
-                                        Delete
-                                    </a>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
