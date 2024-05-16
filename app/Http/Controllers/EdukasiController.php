@@ -85,8 +85,16 @@ class EdukasiController extends Controller
     public function showEdukasi($id)
     {
         try {
-            $edukasi = DataEdukasi::findOrFail($id);
-            return view('produsen.monitoring.edukasi', ['getEdukasi' => $edukasi]);
+            $edukasi = \DB::table('dataedukasi')
+                        ->leftJoin('data_akun_produsen', 'dataedukasi.id_akunp', '=', 'data_akun_produsen.id_user')
+                        ->leftJoin('akundinasnganjuk', 'dataedukasi.id_akun_dinas', '=', 'akundinasnganjuk.id_user')
+                        ->leftJoin('users AS produsen', 'data_akun_produsen.id_user', '=', 'produsen.id')
+                        ->leftJoin('users AS dinas', 'akundinasnganjuk.id_user', '=', 'dinas.id')
+                        ->select('dataedukasi.*', 'produsen.name AS nama_produsen', 'dinas.name AS nama_dinas')
+                        ->where('dataedukasi.id_edukasi', $id)
+                        ->first();
+            // $edukasi = DataEdukasi::findOrFail($id);
+            return view('produsen.monitoring.show-edukasi', ['getEdukasi' => $edukasi]);
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }

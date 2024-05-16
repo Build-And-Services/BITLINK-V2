@@ -40,7 +40,7 @@
                             <th scope="col">Kualitas Benih</th>
                             <th scope="col">Kendala Produksi</th>
                             <th scope="col">Saran Perbaikan</th>
-                            <th scope="col">Action</th>
+                            {{-- <th scope="col">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -65,7 +65,7 @@
                                 <td>{{$item->kualitas_benih}}</td>
                                 <td>{{$item->kendala_produksi}}</td>
                                 <td>{{$item->saran_produksi}}</td>
-                                <td>
+                                {{-- <td>
                                     <div class="d-flex">
                                         <a href="{{route('produsen.laporan.detail', ['id' => $item->id_evaluasi])}}">
                                             <button class="py-2 px-4 mr-2 btn-warning">Edit</button>
@@ -76,7 +76,7 @@
                                     </form>
                                     <button type="button" onclick="deleteEvaluasi('{{$item->id_evaluasi}}')" class="py-2 px-4 mr-2 btn-danger">Hapus</button>
                                     </div>
-                                </td>
+                                </td> --}}
                             </tr>
                             @endforeach
                         @endif
