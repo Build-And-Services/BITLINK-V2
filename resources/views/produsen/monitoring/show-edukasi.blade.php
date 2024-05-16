@@ -237,56 +237,25 @@
                 <div class="row">
                     <div class="col-12">
                         <!-- Tambah Bibit Inner -->
-                        <form id="editForm" method="POST" action="{{ route('produsen.laporan.update', ['id' => $getLaporan->id_evaluasi]) }}">
-                            @method('PUT')
-                            @csrf
-                            <div class="mb-3">
-                                <label for="tgl_evaluasi" class="form-label">Tanggal Evaluasi</label>
-                                <input type="date" id="tgl_evaluasi" name="tgl_evaluasi" class="form-control"
-                                    value="{{ $getLaporan->tgl_evaluasi }}" placeholder="Masukkan tanggal evaluasi">
+                        <div class="card text-light" style="background-color: #01B2B7">
+                            <div class="card-body">
+                                <div class="icon">
+                                    <i class="fa fa-ambulance"></i>
+                                </div>
+                                <div class="mt-3">
+                                    <span>Edukasi</span>
+                                    <h4>{{$getEdukasi->judul_edukasi}}</h4>
+                                    <a>Ditambahkan oleh : {{$getEdukasi->nama_produsen}} {{$getEdukasi->nama_dinas}}</i></a>
+                                    <h6>Dibuat pada tanggal : {{$getEdukasi->tanggal_edukasi}}</h6>
+                                    <p class="text-light mt-3 pb-5">{{$getEdukasi->isi_edukasi}}</p>
+                                </div>
+                                {{-- <div class="mt-3">
+                                    <a class="btn-warning px-3 py-2 rounded mr-2" href="{{url('/monitoring-edukasi/show', $getEdukasi->id_edukasi)}}">
+                                        Lihat Detail
+                                    </a>
+                                </div> --}}
                             </div>
-                            <div class="mb-3">
-                                <label for="nama_perusahaan" class="form-label">Nama Perusahaan</label>
-                                <input type="text" id="nama_perusahaan" name="nama_perusahaan" class="form-control"
-                                    value="{{ Auth::user()->dataProdusen->nama_perusahaan }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="kinerja_produksi" class="form-label">Kinerja Produksi</label>
-                                <input type="text" id="kinerja_produksi" name="kinerja_produksi" class="form-control"
-                                    value="{{ $getLaporan->kinerja_produksi }}" placeholder="Masukkan kinerja produksi">
-                            </div>
-                            <div class="mb-3">
-                                <label for="kualitas_benih">Kualitas Benih:</label>
-                                <select name="kualitas_benih" id="kualitas_benih" class="form-control">
-                                    <option value="{{ $getLaporan->kualitas_benih }}" style="text-transform: capitalize">
-                                        {{ $getLaporan->kualitas_benih }}
-                                    </option>
-                                    <option value="Baik">
-                                        Baik
-                                    </option>
-                                    <option value="Sangat Baik">
-                                        Sangat Baik</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="kendala_produksi" class="form-label">Kendala Produksi</label>
-                                <input type="text" id="kendala_produksi" name="kendala_produksi"
-                                    value="{{ $getLaporan->kendala_produksi }}" class="form-control"
-                                    placeholder="Masukkan kendala produksi">
-                            </div>
-                            <div class="mb-3">
-                                <label for="saran_produksi" class="form-label">Saran Perbaikan</label>
-                                <input type="text" id="saran_produksi" name="saran_produksi"
-                                    value="{{ $getLaporan->saran_produksi }}" class="form-control"
-                                    placeholder="Masukkan saran perbaikan">
-                            </div>
-                            <div class="d-flex justify-content-between mt-5">
-                                <button type="button" id="resetBtn" style="border: 1px solid #7A5CFA"
-                                    class="bg-light px-4 py-3">Batal</button>
-                                <button type="submit" style="background-color: #7A5CFA"
-                                    class="text-light px-4 py-3">Simpan</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <!--/ End Tambah Bibit Inner -->

@@ -120,7 +120,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/create', 'createEdukasi')->name('edukasi.create');
             Route::post('/', 'storeEdukasiProdusen')->name('edukasi.store.produsen');
             Route::post('/dinas', 'storeEdukasiDinas')->name('edukasi.store.dinas');
-            // Route::get('/edukasi/edit/{id}', 'showEdukasi')->name('edukasi.show');
+            Route::get('/show/{id}', 'showEdukasi')->name('edukasi.show');
             // Route::put('/edukasi/{id}', 'updateEdukasi')->name('edukasi.update');
             // Route::get('/edukasi/delete/{id}', 'destroyEdukasi')->name('edukasi.destroy');
         });
