@@ -12,11 +12,13 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('frontend.profile.index');
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         $request->validate([
             'name' => 'required',
@@ -43,14 +45,14 @@ class ProfileController extends Controller
 
             $user->save();
 
-            if($user->role == "PRODUSEN"){
+            if ($user->role == "PRODUSEN") {
                 DataAkunProdusen::where('id_user', $user->id)->update([
                     'nama_perusahaan' => $request->nama_perusahaan,
                     'nomor_legalitas_usaha' => $request->nomor_legalitas_usaha,
                 ]);
             }
 
-            if($user->role == "AKUN DINAS"){
+            if ($user->role == "AKUN DINAS") {
                 DinasNganjuk::where('id_user', $user->id)->update([
                     'nama_instansi' => $request->nama_perusahaan,
                     'alamat_lengkap' => $request->alamat_lengkap,
