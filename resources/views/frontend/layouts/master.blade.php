@@ -182,13 +182,15 @@
                                                 </ul>
                                             </li>
                                             @endif
-                                            <li class="{{ request()->segment(1) == 'pesanan' ? 'active' : '' }}"><a
-                                                    href="{{ route('pesanan.index') }}">Pesanan</a></li>
-                                            @if (Auth::user()->role == 'PRODUSEN' || Auth::user()->role == 'AKUN DINAS')
-                                                <li
-                                                    class="{{ request()->segment(1) == 'permintaan-pesanan' ? 'active' : '' }}">
-                                                    <a href="{{ url('/permintaan-pesanan') }}">Permintaan Pesanan</a>
-                                                </li>
+                                            @if (Auth::user()->role != 'AKUN DINAS')
+                                                <li class="{{ request()->segment(1) == 'pesanan' ? 'active' : '' }}"><a
+                                                        href="{{ route('pesanan.index') }}">Pesanan</a></li>
+                                                @if (Auth::user()->role == 'PRODUSEN')
+                                                    <li
+                                                        class="{{ request()->segment(1) == 'permintaan-pesanan' ? 'active' : '' }}">
+                                                        <a href="{{ url('/permintaan-pesanan') }}">Permintaan Pesanan</a>
+                                                    </li>
+                                                @endif
                                             @endif
                                             <div class="get-quote">
                                                 <a href="/logout" class="btn">LOG OUT</a>
