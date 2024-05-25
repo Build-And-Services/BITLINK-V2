@@ -69,8 +69,7 @@
                                                 <label class="form-label" for="typePasswordX">Password</label>
                                                 <input type="password" name="password" id="typePasswordX"
                                                     class="form-control form-control" />
-                                                <span><a href="{{ route('password.request') }}">Forgot
-                                                        Password?</a></span>
+                                                <span><a href="{{ route('password.request') }}">Lupa Password?</a></span>
                                             </div>
 
                                             <div class="mb-2">
