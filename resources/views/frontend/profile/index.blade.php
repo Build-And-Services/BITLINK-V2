@@ -11,7 +11,7 @@
                 <div class="col-12">
                     <h2>{{ Auth::user()->name }}</h2>
                     <ul class="bread-list">
-                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a href="/">Dashboard</a></li>
                         <li><i class="icofont-simple-right"></i></li>
                         <li class="active">Profile</li>
                     </ul>
@@ -77,7 +77,7 @@
                                                     </div>
                                                     @if(Auth::user()->role == "PRODUSEN")                                                        
                                                         <div class="form-group">
-                                                            <label for="name_perusahaaan" class="col-form-label">nama perusahaaan</label>
+                                                            <label for="name_perusahaaan" class="col-form-label">nama instansi</label>
                                                             <input type="text" name="nama_perusahaan" value="{{ Auth::user()->dataProdusen->nama_perusahaan }}" class="form-control" id="name_perusahaaan">
                                                         </div>
                                                         <div class="form-group">
@@ -105,12 +105,8 @@
                                                         <input type="email" name="email" value="{{ Auth::user()->email   }}" class="form-control" id="email">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="username" class="col-form-label">username</label>
-                                                        <input type="text" name="username" value="{{ Auth::user()->username   }}" class="form-control" id="username">
-                                                    </div>
-                                                    <div class="form-group">
                                                         <label for="email" class="col-form-label">password</label>
-                                                        <input type="password" name="password" class="form-control" id="email">
+                                                        <input type="password" name="password" class="form-control" value="{{ Auth::user()->password_not_hash   }}" id="email">
                                                     </div>
                                                 </form>
                                             </div>
@@ -123,12 +119,14 @@
                                 </div>
                             </div>
                             <div class="row mt-4">
-                                <div class="mb-2 col-4">
-                                    <h6>Nama</h6>
-                                </div>
-                                <div class="mb-2 col-8">
-                                    <p>{{ Auth::user()->name }}</p>
-                                </div>
+                                @if (Auth::user()->role != 'AKUN DINAS')                   
+                                    <div class="mb-2 col-4">
+                                        <h6>Nama</h6>
+                                    </div>
+                                    <div class="mb-2 col-8">
+                                        <p>{{ Auth::user()->name }}</p>
+                                    </div>
+                                @endif
                                 @if(Auth::user()->role == "PRODUSEN")                          
                                     <div class="mb-2 col-4">
                                         <h6>Nama Perusahaan</h6>
@@ -137,7 +135,7 @@
                                         <p>{{ Auth::user()->dataProdusen->nama_perusahaan }}</p>
                                     </div>
                                     <div class="mb-2 col-4">
-                                        <h6>No. Legalitas</h6>
+                                        <h6>Nomor Induk Berusaha</h6>
                                     </div>
                                     <div class="mb-2 col-8">
                                         <p>{{ Auth::user()->dataProdusen->nomor_legalitas_usaha }}</p>
@@ -171,10 +169,10 @@
                                     <p>{{ Auth::user()->email }}</p>
                                 </div>
                                 <div class="mb-2 col-4">
-                                    <h6>Username</h6>
+                                    <h6>Password</h6>
                                 </div>
                                 <div class="mb-2 col-8">
-                                    <p>{{ Auth::user()->username }}</p>
+                                    <p>{{ Auth::user()->password_not_hash }}</p>
                                 </div>
                             </div>
                         </div>
