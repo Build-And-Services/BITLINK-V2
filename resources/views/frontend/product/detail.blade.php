@@ -43,19 +43,20 @@
               <p class="text-with-underline">Kelas Benih: {{ $benih->kualitas_benih }}</p>
 
               
-              
-              @if (Auth::user()->id != $benih->id_akunp)                  
-                <div class="quantity-control">
-                  <label for="quantity" class="visually-hidden">Quantity</label>
-                  <div class="input-group">
-                    <button type="button" class="btn btn-sm btn-secondary" aria-label="Decrease Quantity" onclick="decrementQuantity()">-</button>
-                    <input type="number" id="quantity" name="quantity" min="1" value="1" aria-label="Benih Quantity">
-                    <span class="input-group-text">/kg</span>
-                    <button type="button" class="btn btn-sm btn-primary" aria-label="Increase Quantity" onclick="incrementQuantity()">+</button>
-                  </div>
-                </div>
-                <a href="/padi/checkout/{{ $benih->id_benih }}/1" id="pesan" class="btn btn-success" role="button" aria-disabled="true">Pesan</a>
-              @else 
+              @if (Auth::user()->role != 'AKUN DINAS')
+                @if (Auth::user()->id != $benih->id_akunp)                  
+                    <div class="quantity-control">
+                    <label for="quantity" class="visually-hidden">Quantity</label>
+                    <div class="input-group">
+                        <button type="button" class="btn btn-sm btn-secondary" aria-label="Decrease Quantity" onclick="decrementQuantity()">-</button>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1" aria-label="Benih Quantity">
+                        <span class="input-group-text">/kg</span>
+                        <button type="button" class="btn btn-sm btn-primary" aria-label="Increase Quantity" onclick="incrementQuantity()">+</button>
+                    </div>
+                    </div>
+                    <a href="/padi/checkout/{{ $benih->id_benih }}/1" id="pesan" class="btn btn-success" role="button" aria-disabled="true">Pesan</a>
+                @else 
+              @endif
                 <div class="mt-3">
                   <a href="{{ route('BenihData.edit', $benih->id_benih) }}" class="btn btn-primary">Edit</a>
                   <a href="#" class="btn btn-danger" id="delete-button">Delete</a>
