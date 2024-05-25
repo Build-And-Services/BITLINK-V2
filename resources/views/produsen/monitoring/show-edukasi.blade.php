@@ -8,8 +8,8 @@
                 /* background-color: #4CAF50; */
                 color: white;
                 /* padding: 10px 20px;
-        border: none;
-        border-radius: 5px; */
+            border: none;
+            border-radius: 5px; */
                 cursor: pointer;
             }
 
@@ -235,7 +235,11 @@
                     </div>
                 @endif
                 <div class="row">
+
                     <div class="col-12">
+                        <a href="{{ url('/monitoring-edukasi') }}" class="btn mb-5">
+                            Kembali
+                        </a>
                         <!-- Tambah Bibit Inner -->
                         <div class="card text-light" style="background-color: #01B2B7">
                             <div class="card-body">
@@ -244,10 +248,11 @@
                                 </div>
                                 <div class="mt-3">
                                     <span>Edukasi</span>
-                                    <h4>{{$getEdukasi->judul_edukasi}}</h4>
-                                    <a>Ditambahkan oleh : {{$getEdukasi->nama_produsen}} {{$getEdukasi->nama_dinas}}</i></a>
-                                    <h6>Dibuat pada tanggal : {{$getEdukasi->tanggal_edukasi}}</h6>
-                                    <p class="text-light mt-3 pb-5">{{$getEdukasi->isi_edukasi}}</p>
+                                    <h4>{{ $getEdukasi->judul_edukasi }}</h4>
+                                    <a>Ditambahkan oleh : {{ $getEdukasi->nama_produsen }}
+                                        {{ $getEdukasi->nama_dinas }}</i></a>
+                                    <h6>Dibuat pada tanggal : {{ $getEdukasi->tanggal_edukasi }}</h6>
+                                    <p class="text-light mt-3 pb-5">{{ $getEdukasi->isi_edukasi }}</p>
                                 </div>
                                 {{-- <div class="mt-3">
                                     <a class="btn-warning px-3 py-2 rounded mr-2" href="{{url('/monitoring-edukasi/show', $getEdukasi->id_edukasi)}}">
@@ -272,7 +277,9 @@
             // Event listener untuk klik tombol reset
             resetBtn.addEventListener("click", function() {
                 // Ambil semua input fields
-                var inputFields = document.querySelectorAll('#editForm input[type="text"]:not([readonly]), #editForm input[type="date"]:not([readonly])');
+                var inputFields = document.querySelectorAll(
+                    '#editForm input[type="text"]:not([readonly]), #editForm input[type="date"]:not([readonly])'
+                    );
                 // Loop melalui input fields dan set nilai menjadi kosong
                 inputFields.forEach(function(input) {
                     input.value = '';

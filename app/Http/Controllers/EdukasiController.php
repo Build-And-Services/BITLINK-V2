@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\DataEdukasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class EdukasiController extends Controller
 {
@@ -12,13 +14,13 @@ class EdukasiController extends Controller
     {
         try {
             $edukasi = \DB::table('dataedukasi')
-                        ->leftJoin('data_akun_produsen', 'dataedukasi.id_akunp', '=', 'data_akun_produsen.id_user')
-                        ->leftJoin('akundinasnganjuk', 'dataedukasi.id_akun_dinas', '=', 'akundinasnganjuk.id_user')
-                        ->leftJoin('users AS produsen', 'data_akun_produsen.id_user', '=', 'produsen.id')
-                        ->leftJoin('users AS dinas', 'akundinasnganjuk.id_user', '=', 'dinas.id')
-                        ->select('dataedukasi.*', 'produsen.name AS nama_produsen', 'dinas.name AS nama_dinas')
-                        ->latest()
-                        ->get();
+                ->leftJoin('data_akun_produsen', 'dataedukasi.id_akunp', '=', 'data_akun_produsen.id_user')
+                ->leftJoin('akundinasnganjuk', 'dataedukasi.id_akun_dinas', '=', 'akundinasnganjuk.id_user')
+                ->leftJoin('users AS produsen', 'data_akun_produsen.id_user', '=', 'produsen.id')
+                ->leftJoin('users AS dinas', 'akundinasnganjuk.id_user', '=', 'dinas.id')
+                ->select('dataedukasi.*', 'produsen.name AS nama_produsen', 'dinas.name AS nama_dinas')
+                ->latest()
+                ->get();
 
             // dd($edukasi);
             return view('produsen.monitoring.edukasi', [
@@ -27,7 +29,6 @@ class EdukasiController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
-
     }
 
     public function createEdukasi()
@@ -55,19 +56,26 @@ class EdukasiController extends Controller
                 'isi_edukasi' => $request->isi_edukasi,
             ]);
             return redirect('/monitoring-edukasi')->with('success', 'Berhasil tambah data edukasi');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', $th->getMessage());
+        } catch (ValidationException $e) {
+            dd($e);
+            return redirect()->back()
+                ->withErrors(['Semua data harus diisi!'])
+                ->withInput();
         }
     }
 
     public function storeEdukasiDinas(Request $request)
     {
         try {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'tanggal_edukasi' => 'required',
                 'judul_edukasi' => 'required',
                 'isi_edukasi' => 'required',
             ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->with('error', 'Semua data harus diisi!');
+            }
 
             DataEdukasi::create([
                 'id_akun_dinas' => Auth::user()->id,
@@ -76,7 +84,7 @@ class EdukasiController extends Controller
                 'isi_edukasi' => $request->isi_edukasi,
             ]);
             // dd($data);
-            return redirect('/monitoring-edukasi')->with('success', 'Berhasil tambah data edukasi');
+            return redirect('/monitoring-edukasi')->with('success', 'Berhasil Menambahkan Data Edukasi!');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
@@ -86,13 +94,13 @@ class EdukasiController extends Controller
     {
         try {
             $edukasi = \DB::table('dataedukasi')
-                        ->leftJoin('data_akun_produsen', 'dataedukasi.id_akunp', '=', 'data_akun_produsen.id_user')
-                        ->leftJoin('akundinasnganjuk', 'dataedukasi.id_akun_dinas', '=', 'akundinasnganjuk.id_user')
-                        ->leftJoin('users AS produsen', 'data_akun_produsen.id_user', '=', 'produsen.id')
-                        ->leftJoin('users AS dinas', 'akundinasnganjuk.id_user', '=', 'dinas.id')
-                        ->select('dataedukasi.*', 'produsen.name AS nama_produsen', 'dinas.name AS nama_dinas')
-                        ->where('dataedukasi.id_edukasi', $id)
-                        ->first();
+                ->leftJoin('data_akun_produsen', 'dataedukasi.id_akunp', '=', 'data_akun_produsen.id_user')
+                ->leftJoin('akundinasnganjuk', 'dataedukasi.id_akun_dinas', '=', 'akundinasnganjuk.id_user')
+                ->leftJoin('users AS produsen', 'data_akun_produsen.id_user', '=', 'produsen.id')
+                ->leftJoin('users AS dinas', 'akundinasnganjuk.id_user', '=', 'dinas.id')
+                ->select('dataedukasi.*', 'produsen.name AS nama_produsen', 'dinas.name AS nama_dinas')
+                ->where('dataedukasi.id_edukasi', $id)
+                ->first();
             // $edukasi = DataEdukasi::findOrFail($id);
             return view('produsen.monitoring.show-edukasi', ['getEdukasi' => $edukasi]);
         } catch (\Throwable $th) {
@@ -131,6 +139,4 @@ class EdukasiController extends Controller
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
-
-
 }
