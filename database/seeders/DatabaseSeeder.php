@@ -30,16 +30,16 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Akun Dinas Non Nganjuk',
             'email' => 'akunnondinas@mail.com',
-            'username' => 'AKUN NON DINAS',
-            'password' => Hash::make('password123')
+            'password' => Hash::make('password123'),
+            'password_not_hash' => 'password123'
         ]);
 
         $admin = User::factory()->create([
             'name' => 'Akun Dinas Nganjuk',
             'email' => 'akundinas@mail.com',
-            'username' => 'AKUN DINAS',
             'role' => 'AKUN DINAS',
-            'password' => Hash::make('password123')
+            'password' => Hash::make('password123'),
+            'password_not_hash' => 'password123'
         ]);
 
         $nonDinas = DinasNonNganjuk::create([
@@ -58,24 +58,24 @@ class DatabaseSeeder extends Seeder
 
         $userProdusen1 = User::factory()->create([
             'name' => 'Produsen 1',
-            'username' => 'produsen1',
             'role' => 'PRODUSEN',
             'email' => 'produsen1@mail.com',
-            'password' => Hash::make('password123')
+            'password' => Hash::make('password123'),
+            'password_not_hash' => 'password123'
         ]);
         $userProdusen2 = User::factory()->create([
             'name' => 'Produsen 2',
-            'username' => 'produsen2',
             'role' => 'PRODUSEN',
             'email' => 'produsen2@mail.com',
-            'password' => Hash::make('password123')
+            'password' => Hash::make('password123'),
+            'password_not_hash' => 'password123'
         ]);
         $userProdusen3 = User::factory()->create([
             'name' => 'Produsen 3',
-            'username' => 'produsen3',
             'role' => 'PRODUSEN',
             'email' => 'produsen3@mail.com',
-            'password' => Hash::make('password123')
+            'password' => Hash::make('password123'),
+            'password_not_hash' => 'password123'
         ]);
 
         $mitra1 = DataMitra::create([
@@ -215,7 +215,6 @@ class DatabaseSeeder extends Seeder
             'id_user' => $user->id,
             'nama_penerima' => 'joko',
             'quantity' => 10,
-            'nama_penerima' => "Joko",
             'harga' => 50000,
             'alamat_lengkap' => 'Jl. Papua',
             'telepon' => '082318471623',

@@ -14,12 +14,12 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('username')->unique();
             $table->string('alamat_lengkap', 255)->nullable();
             $table->string('telepon', 15)->nullable();
             $table->enum('role', ['AKUN DINAS', 'AKUN DINAS NON NGANJUK', 'PRODUSEN'])->default('AKUN DINAS NON NGANJUK');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('password_not_hash');
             $table->rememberToken();
             $table->timestamps();
         });

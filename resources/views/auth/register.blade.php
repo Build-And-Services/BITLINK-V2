@@ -21,9 +21,8 @@
         <title>Register Page</title>
     </head>
 
-    <body
-        style="background-image: url({{ url('/img/background/login.jpg') }}); background-repeat: no-repeat; background-size: cover; overflow: hidden;">
-        <section class="gradient-custom">
+    <body>
+        <section class="gradient-custom" style="background-image: url({{ url('/img/background/login.jpg') }}); background-repeat: no-repeat; background-size: cover; overflow: hidden;">
             <div class="container py-5" style="padding: 20px">
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -50,13 +49,23 @@
                                         <p class="text-white-50 mb-5 text-center">Please register your account !</p>
 
                                         <div data-mdb-input-init class="form-group mb-4">
-                                            <label class="form-label" for="typeEmailX">Name</label>
+                                            <label class="form-label" for="typeEmailX">Nama</label>
                                             <input type="text" name="name" id="typeEmailX"
                                                 class="form-control form-control" />
                                         </div>
-                                        <div data-mdb-input-init class="form-group mb-4">
+                                        {{-- <div data-mdb-input-init class="form-group mb-4">
                                             <label class="form-label" for="typeEmailX">Username</label>
                                             <input type="text" name="username" id="typeEmailX"
+                                                class="form-control form-control" />
+                                        </div> --}}
+                                        <div data-mdb-input-init class="form-group mb-4">
+                                            <label class="form-label" for="typeEmailX">Alamat Lengkap</label>
+                                            <input type="text" name="alamat_lengkap" id="typeEmailX"
+                                                class="form-control form-control" />
+                                        </div>
+                                        <div data-mdb-input-init class="form-group mb-4">
+                                            <label class="form-label" for="typeEmailX">Telepon</label>
+                                            <input type="text" name="telepon" id="typeEmailX"
                                                 class="form-control form-control" />
                                         </div>
                                         <div data-mdb-input-init class="form-group mb-4">
