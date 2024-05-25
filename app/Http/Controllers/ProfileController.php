@@ -25,7 +25,6 @@ class ProfileController extends Controller
             'telepon' => 'required',
             'alamat_lengkap' => 'required',
             'email' => 'required|email',
-            'username' => 'required|min:6|max:30',
             'password' => 'required|min:6|max:30',
             // 'nama_perusahaan' => 'required',
             // 'nomor_legalitas_usaha' => 'required',
@@ -40,8 +39,8 @@ class ProfileController extends Controller
             $user->telepon = $request->telepon;
             $user->alamat_lengkap = $request->alamat_lengkap;
             $user->email = $request->email;
-            $user->username = $request->username;
             $user->password = Hash::make($request->password);
+            $user->password_not_hash = $request->password;
 
             $user->save();
 
