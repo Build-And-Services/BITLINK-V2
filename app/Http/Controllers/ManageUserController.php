@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataAkunProdusen;
-use App\Models\DataMitra;
 use App\Models\User;
-use Illuminate\Contracts\View\View;
+use App\Models\DataMitra;
 use Illuminate\Http\Request;
+use App\Models\DataAkunProdusen;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class ManageUserController extends Controller
 {
@@ -57,54 +59,56 @@ class ManageUserController extends Controller
     }
 
     public function storeProdusen(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'nama_perusahaan' => 'required',
-            'nomor_legalitas' => 'required',
-            'alamat' => 'required',
-            'telephone' => 'required',
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'id_kemitraan' => 'required'
+{
+    $validator = Validator::make($request->all(), [
+        'nama' => 'required',
+        'nama_perusahaan' => 'required',
+        'nomor_legalitas' => 'required',
+        'alamat' => 'required',
+        'telephone' => 'required',
+        'email' => ['required', 'email'],
+        'password' => 'required',
+        'id_kemitraan' => 'required',
+    ],[
+        'required' => 'Semua data harus diisi!',
+        'email.email' => 'Masukkan email sesuai dengan format, contoh nama@gmail.com',
+    ]);
+
+    try {
+        $validator->validate();
+        DB::beginTransaction();
+
+        $produsenUser = User::create([
+            'name' => $request->nama,
+            'email' => $request->email,
+            'username' => $request->username,
+            'alamat_lengkap' => $request->alamat,
+            'telepon' => $request->telephone,
+            'role' => 'PRODUSEN',
+            'password' => Hash::make($request->password),
+            'password_not_hash' => $request->password
         ]);
-        try {
-            DB::beginTransaction();
-            // dd('aaa');
 
-            // dd($request->all());
+        DataAkunProdusen::create([
+            'id_user' => $produsenUser->id,
+            'nama_perusahaan' => $request->nama_perusahaan,
+            'nomor_legalitas_usaha' => $request->nomor_legalitas,
+            'id_kemitraan' => $request->id_kemitraan
+        ]);
 
-            $produsenUser = User::create([
-                'name' => $request->nama,
-                'email' => $request->email,
-                'username' => $request->username,
-                'alamat_lengkap' => $request->alamat,
-                'telepon' => $request->telephone,
-                'role' => 'PRODUSEN',
-                'password' => Hash::make($request->password),
-            ]);
-            // dd('sesss');
-
-            DataAkunProdusen::create([
-                'id_user' => $produsenUser->id,
-                'nama_perusahaan' => $request->nama_perusahaan,
-                'nomor_legalitas_usaha' => $request->nomor_legalitas,
-                'id_kemitraan' => $request->id_kemitraan
-            ]);
-            DB::commit();
-            return redirect('/manage-users/produsen')->with('success', 'Data produsen berhasil ditambahkan.');
-        } catch (\Throwable $e) {
-            // dd($e);
-            DB::rollBack();
-            return redirect()->back()->withError($e->getMessage());
-        } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->back()->withError($e->getMessage());
-        }
-
-
-
+        DB::commit();
+        return redirect('/manage-users/produsen')->with('success', 'Data produsen berhasil ditambahkan.');
+    } catch (ValidationException $e) {
+        $errorMessages = $validator->errors()->first();
+        return redirect()->back()->with('error', $errorMessages)->withInput();
+    } catch (\Throwable $e) {
+        DB::rollBack();
+        return redirect()->back()->withError($e->getMessage());
+    } catch (\Illuminate\Database\QueryException $e) {
+        return redirect()->back()->withError($e->getMessage());
     }
+}
+
 
 
     /**

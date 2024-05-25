@@ -13,7 +13,6 @@
                         <th scope="col">Alamat Lengkap</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telephone</th>
-                        <th scope="col">Username</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,7 +23,6 @@
                             <td>{{ $item->alamat_lengkap }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->telepon }}</td>
-                            <td>{{ $item->username }}</td>
                         </tr>
                     @endforeach
                 </tbody>
