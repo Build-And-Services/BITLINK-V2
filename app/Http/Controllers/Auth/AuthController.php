@@ -74,9 +74,7 @@ class AuthController extends Controller
             }
 
         } catch (\Throwable $th) {
-            return redirect('/login')->with('error', 'email atau password yang anda masukkan salah');
-
-            // return back();
+            return back();
         }
     }
 

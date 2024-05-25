@@ -2,10 +2,6 @@
     <img src="{{ url('/img/1712070101.png') }}" width="200" alt="">
 
     <div style="background-color: rgba(255, 255, 255, 0.3)" class="w-[40%] rounded-lg px-5 py-8">
-        <div class="mb-4 py-8 text-sm text-white">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-        </div>
-
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -14,7 +10,7 @@
 
             <!-- Email Address -->
             <div>
-                <x-input-label for="email" :value="__('Email')" />
+                <x-input-label for="email" :value="__('Email Aktif')" />
                 <x-text-input id="email" class="mt-1 block w-full" type="email" name="email" :value="old('email')"
                     required autofocus />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -22,7 +18,7 @@
 
             <div class="mt-4 flex items-center justify-end">
                 <x-primary-button>
-                    {{ __('Email Password Reset Link') }}
+                    {{ __('Reset Link') }}
                 </x-primary-button>
             </div>
         </form>
