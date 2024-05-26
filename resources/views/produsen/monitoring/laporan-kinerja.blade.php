@@ -24,7 +24,7 @@
             </div>
             <div>
                 <a class="btn btn-primary" href="{{url('/monitoring/laporan-bulanan/create')}}">
-                    Tambah Data
+                    Tambah Laporan
                 </a>
             </div>
         </div>

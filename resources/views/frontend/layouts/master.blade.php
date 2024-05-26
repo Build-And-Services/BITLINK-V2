@@ -193,7 +193,22 @@
                                                 @endif
                                             @endif
                                             <div class="get-quote">
-                                                <a href="/logout" class="btn">LOG OUT</a>
+                                                <a href="#" class="btn" data-toggle="modal" data-target="#exampleModal">LOG OUT</a>
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-scrollable">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5>Logout</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Pengguna telah keluar, silahkan login kembali untuk akses fitur lengkap bitlink</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="/logout" class="btn btn-primary">Close</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </ul>
                                     </nav>
