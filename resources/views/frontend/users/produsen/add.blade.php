@@ -34,7 +34,7 @@
                         </div>
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label">Nomor
-                                    Legalitas<span class="text-danger">
+                                    Induk Berusaha<span class="text-danger">
                                         *</span></label> <input class="form-control" type="text" name="nomor_legalitas">
                             </div>
                             <div class="form-group col-sm-6 flex-column d-flex"> <label
@@ -44,18 +44,14 @@
                         </div>
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label">Telephone<span class="text-danger">
+                                    class="form-control-label">Telepon<span class="text-danger">
                                         *</span></label> <input class="form-control" type="text" name="telephone">
-                            </div>
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label">Username<span class="text-danger"> *</span></label>
-                                <input class="form-control" type="text" name="username">
                             </div>
                         </div>
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex"> <label
                                     class="form-control-label">Email<span class="text-danger">
-                                        *</span></label> <input class="form-control" type="email" name="email">
+                                        *</span></label> <input class="form-control" name="email">
                             </div>
                             <div class="form-group col-sm-6 flex-column d-flex"> <label
                                     class="form-control-label">Password<span class="text-danger"> *</span></label>

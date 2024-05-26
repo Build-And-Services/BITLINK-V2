@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataEdukasi;
+use Illuminate\Validation\ValidationException;
 
 class DataEdukasiController extends Controller
 {
@@ -20,17 +21,29 @@ class DataEdukasiController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'tanggal_edukasi' => 'required|date',
-            'judul_edukasi' => 'required|string',
-            'isi_edukasi' => 'required|string',
-            'id_akunp' => 'required|integer',
-        ]);
+        try {
+            $request->validate([
+                'tanggal_edukasi' => 'required|date',
+                'judul_edukasi' => 'required|string',
+                'isi_edukasi' => 'required|string',
+                'id_akunp' => 'required|integer',
+            ]);
 
-        DataEdukasi::create($request->all());
+            DataEdukasi::create($request->all());
 
-        return redirect()->route('dataedukasi.index')
-            ->with('success', 'Data edukasi berhasil ditambahkan.');
+            return redirect()->route('dataedukasi.index')
+                ->with('success', 'Data edukasi berhasil ditambahkan.');
+        } catch (\Throwable $e) {
+            dd($e);
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (ValidationException $e) {
+            dd($e);
+            return redirect()->back()
+                ->withErrors(['Semua data harus diisi!'])
+                ->withInput();
+        }
     }
 
     public function show(DataEdukasi $dataEdukasi)
