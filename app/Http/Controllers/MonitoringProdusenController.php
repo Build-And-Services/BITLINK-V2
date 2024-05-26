@@ -56,7 +56,7 @@ class MonitoringProdusenController extends Controller
                 'saran_produksi' => $request->saran_produksi,
             ]);
 
-            return redirect('/monitoring/laporan-bulanan')->with('success', 'Berhasil menambahkan data evaluasi');
+            return redirect('/monitoring/laporan-bulanan')->with('success', 'Berhasil menambahkan Laporan Kinerja!');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
